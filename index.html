@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - ESSA Power Line v2</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+<link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div id='main'>
+  <div id='map'></div>
+  <div id='infobar'>
+    <div id="flex">
+      <h2>Inspection Details</h2>
+      <div onmouseover="hover()" onmouseleave="leave()"><i class="fa fa-2x fa-info-circle ttip"></i></div>
+        <div id=tooltip>
+          <h3>Instructions</h3>
+          <ul>
+            <li>Use the "Draw Polyline" tool" (upper left corner of the map) to draw the lines you wish to inspect (the two other tools below can be used to edit or remove lines)</li>
+            <li>Fill in the form with all the requested details</li>
+            <li>When done, press "PRINT DATA" and save it as a PDF</li>
+            <li>Email the PDF to the Arlanda Tower and await confirmation</li>
+          </ul>
+          <p>All fields are required. If you are uncertain about a field, like the date of flight, make a note of it in the "Extra info" field and explain why.</p>
+          <p>For the name, phone nr and email, we request that it is for someone that will be on-board the actual inspection flight (pilot or inspector for example).</p>
+          <p>If you are unsure about the aircraft type in standard ICAO code use "airplane" or "helicopter"</p>
+          <p>If you are unsure about the aircraft registration use "XX-XXX"</p>
+          <p>By checking the box you confirm you can maintain at least 335ft QNH during the entirety of the inspection. <i>(If you are unable to do so to inspect the powerlines, it is likely you will be heavily restricted and the inspection will take a long time and be delayed as we cannot see flights below 335ft on our radars.)</i></p>
+          <p>We will answer your request as soon as possible, Thank you!</p>
+        </div>
+      </div>
+    <div id='formDiv'>
+      <form id="survey-form">
+      <div class="formGroup">
+        <input type="text" id="name" placeholder="* Full Name" class="formControl"></input>
+      </div>
+      <div class="formGroup">
+        <input type="tel" id="phone" placeholder="* Telephone number" class="formControl"></input>
+      </div>
+      <div class="formGroup">
+        <input type="email" id="email" placeholder="* Email" class="formControl"></input>
+      </div>
+      <div class="formGroup">
+        <input type="text" id="actype" placeholder="Aircraft Type (i.e C172, B426, etc..)" class="formControl"></input>
+      </div>
+      <div class="formGroup">
+        <input type="text" id="accall" placeholder="Aircraft Callsign/Registration" class="formControl"></input>
+      </div>
+      <div class="formGroup">
+        <input type="date" id="dof" class="formControl"></input>
+      </div>
+      <div class="formGroup">
+        <div id="linesNr">Lines to be inspected: 0</div>
+      </div>
+      <div class="formGroup">Min. altitude for inspection:
+        <label>
+          <input name="alt"
+                 type="checkbox"
+                 class="checkControl"
+                 />335ft QNH
+        </label>
+      </div>
+      <div class="formGroup">
+        <textarea id="comments" class="formControl" placeholder="Enter any extra information here..."></textarea>
+      </div>
+      <div class="formGroup" id="sub">
+        <button type="submit" id="submit" class="formControl">PRINT APPLICATION</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div id='printinfo'>
+  <div id='contactdata'>
+    <div class='datatitles'>Full Name</div>
+    <div id='printname' class='dataentry'>Name Name</div>
+    <div class='datatitles'>Telephone Number</div>
+    <div id='printnr' class='dataentry'>075 728 34 91</div>
+    <div class='datatitles'>Email</div>
+    <div id='printemail' class='dataentry'>Name Name</div>
+    <div class='datatitles'>Aircraft Type</div>
+    <div id='printtype' class='dataentry'>Name Name</div>
+    <div class='datatitles'>Aircraft Callsign</div>
+    <div id='printcs' class='dataentry'>Name Name</div>
+    <div class='datatitles'>Requested Date of Flight</div>
+    <div id='printdof' class='dataentry'>Name Name</div>
+    <div class='datatitles'>Number of lines</div>
+    <div id='printlines' class='dataentry'></div>
+    <div class='datatitles'>Able inspection above 330FT</div>
+    <div id='printalt' class='dataentry'></div>
+  </div>
+  <div id='commentdata'>
+    <div class='datatitles'>Extra info</div>
+    <div id='printextra' class='dataentry'></div>
+  </div>
+</div>
+
+
+
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
