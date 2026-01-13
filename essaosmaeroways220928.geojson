@@ -29443,7 +29443,7 @@
       "properties": {
         "@id": "node/6501001605",
         "aeroway": "parking_position",
-        "ref": "58",
+        "ref": "52",
         "@timestamp": "2019-05-25T19:31:47Z",
         "@version": 1,
         "@changeset": 70617920,
